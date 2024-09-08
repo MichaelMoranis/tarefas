@@ -6,14 +6,14 @@ import { HeaderProps } from "../../types";
 // esse componente cuidara do titulo e da entrada de novos items.
 export default function Header({ input, handleInput, addInput }: HeaderProps) {
   return (
-    <div className="w-full text-zinc-300 bg-indigo-600">
+    <div className="w-full text-zinc-300 bg-purple-800">
       <div className="flex flex-col m-4 gap-2">
         <div className="flex justify-between flex-row-reverse  items-center gap-4 font-bold text-2xl">
           <div>
             <img className="h-16 w-16" src={iconHeader} alt="lista icone" />
           </div>
           <div>
-            <h1>Suas Tarefas:</h1>
+            <h1>Seus Itens:</h1>
             <CurrentDate />
           </div>
         </div>
@@ -27,11 +27,11 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
             id="item"
             value={input}
             onChange={handleInput}
-            placeholder="inserir produtos"
+            placeholder="inserir itens"
           />
         </div>
         <button
-          className="flex justify-around items-center font-semibold w-32 p-2 gap-2 text-center rounded-full bg-blue-700 hover:bg-orange-500"
+          className="flex justify-around items-center font-semibold w-32 p-2 gap-2 text-center rounded-full bg-purple-800 hover:bg-orange-500"
           type="button"
           aria-label="add"
           onClick={() => addInput(input)}
