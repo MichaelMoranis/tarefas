@@ -26,7 +26,7 @@ Para realizar esse procedimento utilizei do hook useEffect do React, dessa forma
 
 
 
-```
+```javascript
   const [input, SetInput] = useState("");
   const [valueItem, setValueItem] = useState<TodoListProps[]>(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -51,7 +51,7 @@ Para realizar esse procedimento utilizei do hook useEffect do React, dessa forma
 ```
 e fazendo uso de funções que adicionam e removem dados do armazenamento local. 
 
-```
+```javascript
 // funcao para adicionar elementos na lista
   function addInput(newText: string) {
     if (input.trim() != "") {
