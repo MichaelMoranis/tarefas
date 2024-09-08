@@ -23,7 +23,7 @@ export default function TodoItem({
   return (
     <li
       className={`flex items-center justify-between px-2 gap-y-4 w-full h-12 rounded-2xl font-bold ${
-        isChecked ? "text-white bg-purple-300 " : "text-zinc-400 bg-purple-400"
+        isChecked ? "text-white bg-purple-300 " : "text-white bg-purple-400"
       }`}
       draggable
       onDragStart={(event) => onDragStart(event, value)}
