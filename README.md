@@ -1,30 +1,79 @@
-# React + TypeScript + Vite
+# Lista de tarefas com armazenamento no localstorage do navegador.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Nesta aplicação implemento a funcionalidade de salvar dados no armazenamento interno do navegador - o localstorage.
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Rodar a aplicação localmente.
 
-## Expanding the ESLint configuration
+Baixe ou clone o projeto localmente e rode: 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
 ```
+npm install
+```
+depois de concluir o dowload das dependências de desenvolvimento execute: 
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```
+npm run dev
+```
+e terá seu url como: "http://localhost:5173".
+
+## Motivo 
+
+O uso do localstorage é simples e rapído quando se tem poucos dados sendo armazenados e também para buscar esses dados bem como persistir o mesmo localmente para quando recarregar a pagina eles permaneçam disponíveis para uso. 
+
+Para realizar esse procedimento utilizei do hook useEffect do React, dessa forma: 
+
+
+
+```
+  const [input, SetInput] = useState("");
+  const [valueItem, setValueItem] = useState<TodoListProps[]>(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      try {
+        const parsedTasks = JSON.parse(storedTasks);
+        if (Array.isArray(parsedTasks)) {
+          return parsedTasks;
+        }
+      } catch (e) {
+        console.error("Falha ao analisar as tarefas do localStorage", e);
+      }
+    }
+    return [];
+  });
+  // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
+  useEffect(() => {
+      localStorage.setItem("tasks", JSON.stringify(valueItem)); 
+      console.log("Tarefas salvas no localStorage:", valueItem); 
+  }, [valueItem]);
+
+```
+e fazendo uso de funções que adicionam e removem dados do armazenamento local. 
+
+```
+// funcao para adicionar elementos na lista
+  function addInput(newText: string) {
+    if (input.trim() != "") {
+      setValueItem((prevValue: TodoListProps[]) => {
+        const newInput: TodoListProps = {
+          id: prevValue.length
+            ? Math.max(...prevValue.map((item) => item.id)) + 1
+            : 1,
+          text: newText,
+          isChecked: false
+        };
+        return [...prevValue, newInput];
+      });
+      SetInput("");
+    }
+  }
+
+  // funcao para deletar itens na lista
+  function deleteItem(id: number) {
+    const newListValue = valueItem.filter((value) => value.id !== id);
+    setValueItem(newListValue);
+  }
+
+```
+se leu até contribuia no projeto, todas as sugestões são bem vindas !!!
