@@ -21,8 +21,8 @@ function App() {
   });
   // aqui estou atualizando o localstorage sempre que "valueItem no [array] mudar"
   useEffect(() => {
-      localStorage.setItem("tasks", JSON.stringify(valueItem)); 
-      console.log("Tarefas salvas no localStorage:", valueItem); 
+    localStorage.setItem("tasks", JSON.stringify(valueItem));
+    console.log("Tarefas salvas no localStorage:", valueItem);
   }, [valueItem]);
 
   // atualizar valor do estado inicial input
@@ -59,7 +59,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-100 flex justify-center">
+    <div className="min-h-screen flex justify-center">
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
         <Header input={input} handleInput={handleInput} addInput={addInput} />
         <div className="flex flex-col w-full rounded-md my-4">
@@ -74,7 +74,7 @@ function App() {
       </div>
     </div>
   );
-  
+
 }
 
 export default App;

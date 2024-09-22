@@ -7,13 +7,13 @@ import { HeaderProps } from "../../types";
 export default function Header({ input, handleInput, addInput }: HeaderProps) {
   return (
     <div className="w-full text-zinc-300 bg-purple-800">
-      <div className="flex flex-col m-4 gap-2">
+      <div className="flex flex-col m-4 gap-2 ">
         <div className="flex justify-between flex-row-reverse  items-center gap-4 font-bold text-2xl">
           <div>
             <img className="h-16 w-16" src={iconHeader} alt="lista icone" />
           </div>
           <div>
-            <h1>Seus Itens:</h1>
+            <h1 className="text-zinc-200">Seus Itens:</h1>
             <CurrentDate />
           </div>
         </div>

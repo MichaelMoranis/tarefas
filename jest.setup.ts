@@ -1,5 +1,3 @@
-import "@testing-library/jest-dom"
-
 module.exports = {
   process() {
     return 'module.exports = {};'
@@ -7,4 +5,4 @@ module.exports = {
   getFileContent(filePath) {
     return filePath;
   },
-};
+}
