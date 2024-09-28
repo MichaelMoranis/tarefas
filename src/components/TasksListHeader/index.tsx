@@ -5,7 +5,7 @@ interface taskCompletedProps {
 
 export function TaskListHeader({ taskCompleted, deleteAll }: taskCompletedProps) {
   return (
-    <div className="flex gap-6 text-xl justify-start items-center font-bold text-zinc-100 ml-2 rounded-md">
+    <div className="flex gap-4 text-xl justify-start items-center font-bold text-zinc-100 ml-2 rounded-md">
       <div className="flex items-center justify-center bg-orange-500 rounded-md px-2">
         concluidas:
         <span>{taskCompleted}</span>

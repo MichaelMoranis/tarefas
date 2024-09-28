@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <div className="min-h-screen flex flex-col items-center">
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
         <Header input={input} handleInput={handleInput} addInput={addInput} />
         <div className="flex flex-col w-full rounded-md my-4">
