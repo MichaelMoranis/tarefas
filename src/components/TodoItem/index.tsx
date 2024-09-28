@@ -1,12 +1,8 @@
-import React from "react";
 import bin from "../../assets/bin(1).png";
 
 interface TodoItemProps {
   value: string;
   deleteItem: () => void;
-  onDragStart: (event: React.DragEvent<HTMLLIElement>, value: string) => void;
-  onDragOver: (event: React.DragEvent<HTMLLIElement>) => void;
-  onDrop: (event: React.DragEvent<HTMLLIElement>) => void;
   isChecked: boolean;
   toggleCompletion: () => void;
 }
@@ -14,21 +10,14 @@ interface TodoItemProps {
 export default function TodoItem({
   value,
   deleteItem,
-  onDragStart,
-  onDragOver,
-  onDrop,
   isChecked,
   toggleCompletion,
 }: TodoItemProps) {
   return (
     <li
-      className={`flex items-center justify-between px-2 gap-y-4 w-full h-12 rounded-2xl font-bold ${
-        isChecked ? "text-white bg-purple-300 " : "text-white bg-purple-400"
-      }`}
+      className={`flex items-center justify-between px-2 gap-y-4 w-full h-12 rounded-2xl font-bold ${isChecked ? "text-white bg-purple-300 " : "text-white bg-purple-400"
+        }`}
       draggable
-      onDragStart={(event) => onDragStart(event, value)}
-      onDragOver={onDragOver}
-      onDrop={onDrop}
     >
       <div className="flex items-center">
         <input
@@ -36,7 +25,7 @@ export default function TodoItem({
           onChange={toggleCompletion}
           id="checked-checkbox"
           type="checkbox"
-          className="w-6 h-6 rounded-full bg-green-500"
+          className="appearance-none w-6 h-6 border bg-white border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
         />
         <label
           htmlFor="checked-checkbox"

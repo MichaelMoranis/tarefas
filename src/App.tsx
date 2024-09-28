@@ -53,6 +53,14 @@ function App() {
     setValueItem(newListValue);
   }
 
+
+  function deleteAll() {
+    setValueItem([])
+    localStorage.clear()
+    console.log("tudo foi deletado")
+  }
+
+
   // funcao para atualizar o novo array de efeito do drag and drop
   const updateItems = (items: TodoListProps[]) => {
     setValueItem(items);
@@ -67,6 +75,7 @@ function App() {
             <TodoList
               valueItem={valueItem}
               deleteItem={deleteItem}
+              deleteAll={deleteAll}
               updateItems={updateItems}
             />
           </div>
