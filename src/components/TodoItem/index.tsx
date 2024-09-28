@@ -25,7 +25,7 @@ export default function TodoItem({
           onChange={toggleCompletion}
           id="checked-checkbox"
           type="checkbox"
-          className="appearance-none w-6 h-6 border bg-white border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className="appearance-none w-6 h-6 border bg-white border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 px-2"
         />
         <label
           htmlFor="checked-checkbox"
