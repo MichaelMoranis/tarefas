@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 import { TodoListProps } from "./types";
+import { useRef } from "react";
 
 function App() {
   const [input, SetInput] = useState("");
+
   const [valueItem, setValueItem] = useState<TodoListProps[]>(() => {
     const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
@@ -39,11 +41,12 @@ function App() {
             ? Math.max(...prevValue.map((item) => item.id)) + 1
             : 1,
           text: newText,
-          isChecked: false
+          isChecked: false,
         };
         return [...prevValue, newInput];
       });
       SetInput("");
+      handleInputRef();
     }
   }
 
@@ -53,23 +56,32 @@ function App() {
     setValueItem(newListValue);
   }
 
-
   function deleteAll() {
-    setValueItem([])
-    localStorage.clear()
-    console.log("tudo foi deletado")
+    setValueItem([]);
+    localStorage.clear();
+    console.log("tudo foi deletado");
   }
-
 
   // funcao para atualizar o novo array de efeito do drag and drop
   const updateItems = (items: TodoListProps[]) => {
     setValueItem(items);
   };
 
+  const inputRef = useRef(null);
+
+  function handleInputRef() {
+    inputRef.current.focus();
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">
-        <Header input={input} handleInput={handleInput} addInput={addInput} />
+        <Header
+          input={input}
+          inputRef={inputRef}
+          handleInput={handleInput}
+          addInput={addInput}
+        />
         <div className="flex flex-col w-full rounded-md my-4">
           <div className="placeholder:only:rounded-md">
             <TodoList
@@ -83,8 +95,6 @@ function App() {
       </div>
     </div>
   );
-
 }
 
 export default App;
-

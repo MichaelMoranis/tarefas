@@ -2,9 +2,15 @@ import iconHeader from "../../assets/task-list.png";
 import iconPlus from "../../assets/add.png";
 import CurrentDate from "../Date";
 import { HeaderProps } from "../../types";
+import { useRef } from "react";
 
 // esse componente cuidara do titulo e da entrada de novos items.
-export default function Header({ input, handleInput, addInput }: HeaderProps) {
+export default function Header({
+  input,
+  handleInput,
+  addInput,
+  inputRef,
+}: HeaderProps) {
   return (
     <div className="w-full text-zinc-300 bg-purple-800">
       <div className="flex flex-col m-4 gap-2 ">
@@ -26,6 +32,7 @@ export default function Header({ input, handleInput, addInput }: HeaderProps) {
             name="item"
             id="item"
             value={input}
+            ref={inputRef}
             onChange={handleInput}
             placeholder="inserir itens"
           />
