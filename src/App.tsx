@@ -67,10 +67,12 @@ function App() {
     setValueItem(items);
   };
 
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   function handleInputRef() {
-    inputRef.current.focus();
+    if (input.current) {
+      inputRef.current.focus();
+    }
   }
 
   return (
