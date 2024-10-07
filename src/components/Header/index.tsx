@@ -3,14 +3,24 @@ import iconPlus from "../../assets/add.png";
 import CurrentDate from "../Date";
 import { HeaderProps } from "../../types";
 import { useRef } from "react";
-
+import { useEffect } from "react";
 // esse componente cuidara do titulo e da entrada de novos items.
 export default function Header({
+  valueItem,
   input,
   handleInput,
   addInput,
   inputRef,
 }: HeaderProps) {
+  useEffect(() => {
+    const input = document.querySelector(
+      "input[name='myInput']",
+    ) as HTMLInputElement;
+    if (input) {
+      input.focus();
+    }
+  }, [valueItem]);
+
   return (
     <div className="w-full text-zinc-300 bg-purple-800">
       <div className="flex flex-col m-4 gap-2 ">
@@ -29,7 +39,7 @@ export default function Header({
           <input
             className="text-black text-center p-2 mx-4 first:bg-zinc-200 w-full rounded-full font-bold placeholder-zinc-500  outline-none"
             type="text"
-            name="item"
+            name="myInput"
             id="item"
             value={input}
             ref={inputRef}

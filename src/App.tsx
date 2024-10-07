@@ -83,6 +83,7 @@ function App() {
           inputRef={inputRef}
           handleInput={handleInput}
           addInput={addInput}
+          valueItem={valueItem}
         />
         <div className="flex flex-col w-full rounded-md my-4">
           <div className="placeholder:only:rounded-md">
