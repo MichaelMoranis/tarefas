@@ -9,17 +9,7 @@ export default function Header({
   input,
   handleInput,
   addInput,
-  inputRef,
 }: HeaderProps) {
-  useEffect(() => {
-    const input = document.querySelector(
-      "input[name='myInput']",
-    ) as HTMLInputElement;
-    if (input) {
-      input.focus();
-    }
-  }, [valueItem]);
-
   return (
     <div className="w-full text-zinc-300 bg-purple-800">
       <div className="flex flex-col m-4 gap-2 ">
@@ -41,7 +31,6 @@ export default function Header({
             name="myInput"
             id="item"
             value={input}
-            ref={inputRef}
             onChange={handleInput}
             placeholder="inserir itens"
           />
