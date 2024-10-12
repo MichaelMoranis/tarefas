@@ -72,6 +72,7 @@ function App() {
   function handleInputRef() {
     if (inputRef.current) {
       inputRef.current.focus();
+      console.log("input focado:");
     }
   }
 

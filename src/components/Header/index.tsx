@@ -2,7 +2,6 @@ import iconHeader from "../../assets/task-list.png";
 import iconPlus from "../../assets/add.png";
 import CurrentDate from "../Date";
 import { HeaderProps } from "../../types";
-import { useRef } from "react";
 import { useEffect } from "react";
 // esse componente cuidara do titulo e da entrada de novos items.
 export default function Header({
