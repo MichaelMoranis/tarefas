@@ -70,7 +70,7 @@ function App() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   function handleInputRef() {
-    if (input.current) {
+    if (inputRef.current) {
       inputRef.current.focus();
     }
   }
