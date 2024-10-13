@@ -6,9 +6,9 @@ export function TaskListPlaceholder() {
       <div className="flex flex-col justify-center text-center items-center gap-4">
         <img src={workout} alt="Lista de tarefas vazia" className="w-28 h-28" />
         <div className="font-bold text-xl">
-          Você ainda não tem itens cadastrados.
+          Você ainda não tem itens adicionados.
         </div>
-        <div className="font-bold text-xl">cadastre novos itens !! 📝</div>
+        <div className="font-bold text-xl">adicione novos itens !! 📝</div>
       </div>
     </div>
   );
