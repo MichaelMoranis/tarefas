@@ -55,7 +55,7 @@ export default function TodoList({
                     draggableId={task.id.toString()}
                     index={index}
                   >
-                    {(provided) => (
+                    {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
@@ -66,6 +66,7 @@ export default function TodoList({
                           deleteItem={() => deleteItem(task.id)}
                           isChecked={task.isChecked}
                           toggleCompletion={() => toggleTaskCompletion(task.id)}
+                           isDragging={snapshot.isDragging}
                         />
                       </li>
                     )}

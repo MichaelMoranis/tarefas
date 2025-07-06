@@ -5,6 +5,7 @@ interface TodoItemProps {
   deleteItem: () => void;
   isChecked: boolean;
   toggleCompletion: () => void;
+  isDragging?: boolean;
 }
 
 // TodoItem.tsx
@@ -13,11 +14,16 @@ export default function TodoItem({
   deleteItem,
   isChecked,
   toggleCompletion,
+  isDragging = false,
 }: TodoItemProps) {
   return (
     <div
-      className={`flex items-center justify-between px-2 gap-y-4 w-full h-12 rounded-2xl font-bold ${
-        isChecked ? "text-white bg-purple-300 " : "text-white bg-purple-400"
+      className={`flex items-center justify-between px-2 gap-y-4 w-full h-12 rounded-2xl font-bold transition-colors duration-200 ${
+        isDragging
+          ? "bg-orange-600 shadow-lg" // Estilo quando está sendo arrastado
+          : isChecked
+          ? "text-white bg-purple-300"
+          : "text-white bg-purple-400"
       }`}
     >
       <div className="flex items-center">
@@ -27,9 +33,7 @@ export default function TodoItem({
           type="checkbox"
           className="appearance-none w-6 h-6 border bg-white border-gray-300 rounded-full checked:bg-blue-500 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 px-2"
         />
-        <label className="ms-2 rounded-full text-md font-medium">
-          {value}
-        </label>
+        <label className="ms-2 rounded-full text-md font-medium">{value}</label>
       </div>
       <button aria-label="delete-item" className="h-8" onClick={deleteItem}>
         <img src={bin} className="h-8 w-8" alt="Delete" />
@@ -37,4 +41,3 @@ export default function TodoItem({
     </div>
   );
 }
-
