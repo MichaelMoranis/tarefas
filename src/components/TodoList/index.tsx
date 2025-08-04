@@ -37,7 +37,14 @@ export default function TodoList({
     updateItems(reordered);
   };
 
-  return (
+    const handleEditItem = (id: number, newText: string) => {
+    const updatedItems = valueItem.map((item) =>
+      item.id === id ? { ...item, text: newText } : item
+    );
+    updateItems(updatedItems);
+  };
+
+ return (
     <div className="flex flex-col gap-4 w-full">
       {valueItem.length > 0 ? (
         <DragDropContext onDragEnd={handleDragEnd}>
@@ -66,7 +73,8 @@ export default function TodoList({
                           deleteItem={() => deleteItem(task.id)}
                           isChecked={task.isChecked}
                           toggleCompletion={() => toggleTaskCompletion(task.id)}
-                           isDragging={snapshot.isDragging}
+                          isDragging={snapshot.isDragging}
+                          onEdit={(newValue) => handleEditItem(task.id, newValue)}
                         />
                       </li>
                     )}
