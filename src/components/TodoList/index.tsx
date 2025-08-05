@@ -3,6 +3,7 @@ import TodoItem from "../TodoItem";
 import { TodoListProps } from "../../types";
 import { TaskListPlaceholder } from "../TaskListPlaceholder";
 import { TaskListHeader } from "../TasksListHeader";
+import { useTheme } from "../../contexts/ThemeContext";
 
 interface ListProps {
   valueItem: TodoListProps[];
@@ -17,6 +18,7 @@ export default function TodoList({
   updateItems,
   deleteAll,
 }: ListProps) {
+  const { isDark } = useTheme();
   const taskCompleted = valueItem.filter((task) => task.isChecked);
   const totalTaskCompleted = taskCompleted.length;
 
@@ -37,22 +39,27 @@ export default function TodoList({
     updateItems(reordered);
   };
 
-    const handleEditItem = (id: number, newText: string) => {
+  const handleEditItem = (id: number, newText: string) => {
     const updatedItems = valueItem.map((item) =>
       item.id === id ? { ...item, text: newText } : item
     );
     updateItems(updatedItems);
   };
 
- return (
+  return (
     <div className="flex flex-col gap-4 w-full">
       {valueItem.length > 0 ? (
         <DragDropContext onDragEnd={handleDragEnd}>
-          <TaskListHeader taskCompleted={totalTaskCompleted} deleteAll={deleteAll} />
+          <TaskListHeader 
+            taskCompleted={totalTaskCompleted} 
+            deleteAll={deleteAll} 
+          />
           <Droppable droppableId="task-list">
             {(provided) => (
               <ul
-                className="flex flex-col rounded-md gap-2 text-white w-full px-2"
+                className={`flex flex-col rounded-md gap-2 w-full px-2 ${
+                  isDark ? "text-gray-100" : "text-gray-800"
+                }`}
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
@@ -67,6 +74,13 @@ export default function TodoList({
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        className={
+                          snapshot.isDragging 
+                            ? isDark 
+                              ? "bg-gray-700 rounded-lg shadow-lg" 
+                              : "bg-purple-100 rounded-lg shadow-lg"
+                            : ""
+                        }
                       >
                         <TodoItem
                           value={task.text}
