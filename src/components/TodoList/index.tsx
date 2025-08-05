@@ -1,15 +1,19 @@
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import TodoItem from "../TodoItem";
-import { TodoListProps } from "../../types";
 import { TaskListPlaceholder } from "../TaskListPlaceholder";
-import { TaskListHeader } from "../TasksListHeader";
 import { useTheme } from "../../contexts/ThemeContext";
+import { TaskListHeader } from "../TasksListHeader";
 
-interface ListProps {
-  valueItem: TodoListProps[];
+interface TodoListProps {
+  valueItem: {
+    id: number;
+    text: string;
+    isChecked: boolean;
+  }[];
   deleteItem: (id: number) => void;
-  updateItems: (items: TodoListProps[]) => void;
+  updateItems: (items: TodoListProps["valueItem"]) => void;
   deleteAll: () => void;
+  toggleCompletion: (id: number) => void; 
 }
 
 export default function TodoList({
@@ -17,10 +21,10 @@ export default function TodoList({
   deleteItem,
   updateItems,
   deleteAll,
-}: ListProps) {
+}: TodoListProps) {
   const { isDark } = useTheme();
-  const taskCompleted = valueItem.filter((task) => task.isChecked);
-  const totalTaskCompleted = taskCompleted.length;
+
+  const taskCompleted = valueItem.filter((task) => task.isChecked).length;
 
   const toggleTaskCompletion = (id: number) => {
     const updatedItems = valueItem.map((item) =>
@@ -51,7 +55,7 @@ export default function TodoList({
       {valueItem.length > 0 ? (
         <DragDropContext onDragEnd={handleDragEnd}>
           <TaskListHeader 
-            taskCompleted={totalTaskCompleted} 
+            taskCompleted={taskCompleted} 
             deleteAll={deleteAll} 
           />
           <Droppable droppableId="task-list">

@@ -1,15 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
 
+import { ThemeProvider } from "./contexts/ThemeContext"; // caminho conforme seu projeto
+import { ListProvider } from "./contexts/ListContext";
 
-import { ThemeProvider } from './contexts/ThemeContext'; // caminho conforme seu projeto
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <App />
+      <ListProvider>
+        <App />
+      </ListProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
